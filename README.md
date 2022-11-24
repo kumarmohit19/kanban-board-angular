@@ -9,7 +9,7 @@
 
 ## Application Demo:
 
-![](https://hrcdn.net/s3_pub/istreet-assets/rx0RgepDUoT2c6fibnvi5A/angular-kanban-medium.gif)
+![](angular-kanban-medium.gif)
 
 ## Functionality Requirements
 
