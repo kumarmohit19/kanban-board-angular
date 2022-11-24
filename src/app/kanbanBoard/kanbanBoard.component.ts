@@ -9,6 +9,7 @@ export class KanbanBoard implements OnInit {
   tasks: Task[];
   stagesNames: string[];
   stagesTasks: any[]; //Only used for rendering purpose
+  newTask: '';
 
   ngOnInit() {
     // Each task is uniquely identified by its name. 
@@ -35,6 +36,38 @@ export class KanbanBoard implements OnInit {
 
   generateTestId = (name) => {
     return name.split(' ').join('-');
+  }
+
+  createTask = () => {
+    if(this.newTask) {
+      let task = {name : this.newTask, stage: 0}
+      this.tasks = [...this.tasks, task];
+      this.configureTasksForRendering();
+      this.newTask = ''
+    }
+  }
+
+  moveTaskForward = (taskName) => {
+    this.tasks.map(task => {
+      if(task.name === taskName) {
+        task.stage < 3 && task.stage++;
+        this.configureTasksForRendering();
+      }
+    })
+  }
+
+  moveTaskBackward = (taskName) => {
+    this.tasks.map(task => {
+      if(task.name === taskName) {
+        task.stage > 0 && task.stage--;
+        this.configureTasksForRendering();
+      }
+    })
+  }
+
+  deleteTask = (taskName) => {
+    this.tasks = this.tasks.filter(task => task.name !== taskName)
+    this.configureTasksForRendering();
   }
 }
 
